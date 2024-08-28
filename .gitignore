@@ -1,0 +1,127 @@
+# .NET Core / .NET 5+ Build Results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]eleases/
+[Rr]eleasesPublic/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm][Ll]/
+
+# NuGet Packages
+**/packages/
+*.nupkg
+*.snupkg
+
+# Node.js modules (if using Node.js)
+node_modules/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Build Results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]eleases/
+[Rr]eleasesPublic/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm][Ll]/
+
+# Visual Studio Code settings
+.vscode/
+
+# Rider settings
+.idea/
+.idea/*.iml
+.idea/.idea_modules
+.idea/inspectionProfiles/
+.idea/libraries/
+.idea/modules.xml
+.idea/gradle.xml
+.idea/compiler.xml
+.idea/workspace.xml
+.idea/dictionaries/
+.idea/.gitignore
+.idea/caches/
+.idea/shelf/
+.idea/httpRequests/
+.idea/assetWizard/
+.idea/uiDesigner.xml
+.idea/vcs.xml
+.idea/misc.xml
+.idea/runConfigurations/
+.idea/sonarlint/
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.userprefs
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# ASP.NET Core
+*.db
+*.sqlite
+
+# Database files
+*.mdf
+*.ldf
+
+# Certificate files
+*.pfx
+*.p12
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+
+# Project files
+*.csproj.user
+
+# Ignore output directories for .NET Core
+bin/
+obj/
+
+# Exclude coverage reports
+coverage/
+
+# Exclude additional IDE-specific files
+.idea/
+*.suo
+*.sln.docstates
+
+# Exclude test results
+test-results/
+
+# Exclude local application data
+*.app
+*.exe
+*.dll
+*.dmg
+*.appcache
+*.appcache.old
+
+# Exclude files for the ASP.NET Core SignalR client
+*.g.cs
+*.g.i.cs
+
+# Exclude Swagger UI generated files
+swagger-ui/
+
+# Cache files
+*.cache
+*.cache.*
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+# Exclude ASP.NET Core environment-specific cache
+.env
+.env.*
