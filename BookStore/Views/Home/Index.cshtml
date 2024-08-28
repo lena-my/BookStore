@@ -17,11 +17,13 @@
 
         @foreach (var book in Model)
         {
-            <tr>
-                <td>@book.Title</td>
-                <td>@book.Author.Name</td>
-                <td>@book.Price</td>
-            </tr>
+            
+                <tr>
+                    <td><a asp-action="GetBook" asp-controller="Books" asp-route-Id=@book.Id>@book.Title</a></td>
+                    <td>@book.Author.Name</td>
+                    <td>@book.Price</td>
+                </tr>
+            
         }
     </table>
 </div>

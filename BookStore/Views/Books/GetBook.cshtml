@@ -1,0 +1,40 @@
+@model BookStore.Models.Entities.Book
+
+@{
+    ViewData["Title"] = @Model.Title;
+}
+
+<div>
+    <table class="table">
+        <tr>
+            <th>Title</th>
+            <td>@Model.Title</td>
+            
+        </tr>
+        <tbody class="table-group-divider">
+        <tr>
+            <th>ISBN</th>
+            <td>@Model.ISBN</td>
+        </tr>
+        <tr>
+            <th>Author</th>
+            <td>@Model.Author.Name</td>
+        </tr>
+        <tr>
+            <th>About the author</th>
+            <td>@Model.Author.Biography</td>
+        </tr>
+        <tr>
+            <th></th>
+            <td>@Model.Category.Name</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>@Model.Description</td>
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td>@Model.Price</td>
+        </tr>
+    </table>
+</div>

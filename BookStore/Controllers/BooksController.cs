@@ -1,4 +1,7 @@
 using BookStore.Data;
+using BookStore.Models.Entities;
+using BookStore.Repositories;
+using BookStore.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,18 +9,18 @@ namespace BookStore.Controllers;
 
 public class BooksController : Controller
 {
-    private readonly BookStoreDbContext _context;
+    private readonly IBookRepository _bookRepository;
 
-    public BooksController(BookStoreDbContext context)
+
+    public BooksController(IBookRepository bookRepository)
     {
-        _context = context;
+        _bookRepository = bookRepository;
     }
-    
-    
+
     // GET
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> GetBook(int Id)
     {
-        
-        return View();
+        Book? book = await _bookRepository.GetBookAsync(Id);
+        return View(book);
     }
 }
