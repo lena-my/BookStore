@@ -1,21 +1,33 @@
 using System.Diagnostics;
+using BookStore.Data;
 using Microsoft.AspNetCore.Mvc;
 using BookStore.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Controllers;
 
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly BookStoreDbContext _context;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, BookStoreDbContext context)
     {
         _logger = logger;
+        _context = context;
     }
 
-    public IActionResult Index()
+    // GET
+    public async Task<IActionResult> Index()
     {
-        return View();
+        // Fetch the list of books from the database
+        var books = await _context.Books
+            .Include(b => b.Author)  // Include related Author data
+            .Include(b => b.Category) // Include related Category data
+            .ToListAsync(); // Execute the query asynchronously
+
+        // Pass the list of books to the view
+        return View(books);
     }
 
     public IActionResult Privacy()
