@@ -2,6 +2,7 @@ using System.Diagnostics;
 using BookStore.Data;
 using Microsoft.AspNetCore.Mvc;
 using BookStore.Models;
+using BookStore.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Controllers;
@@ -9,24 +10,20 @@ namespace BookStore.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    private readonly BookStoreDbContext _context;
+    private readonly IBookRepository _bookRepository;
 
-    public HomeController(ILogger<HomeController> logger, BookStoreDbContext context)
+    public HomeController(ILogger<HomeController> logger, IBookRepository bookRepository)
     {
         _logger = logger;
-        _context = context;
+        _bookRepository = bookRepository;
     }
 
     // GET
     public async Task<IActionResult> Index()
     {
         // Fetch the list of books from the database
-        var books = await _context.Books
-            .Include(b => b.Author)  // Include related Author data
-            .Include(b => b.Category) // Include related Category data
-            .ToListAsync(); // Execute the query asynchronously
-
-        // Pass the list of books to the view
+        var books = await _bookRepository.GetBooksAsync();
+        
         return View(books);
     }
 

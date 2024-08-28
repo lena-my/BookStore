@@ -1,4 +1,6 @@
 using BookStore.Data;
+using BookStore.Repositories;
+using BookStore.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,9 +14,10 @@ builder.Services.AddDbContext<BookStoreDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("BookStoreDbConnection"));
 });
 
+// Dependency injection
+builder.Services.AddScoped<IBookRepository, BookRepository>();
+
 var app = builder.Build();
-
-
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
