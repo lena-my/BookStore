@@ -1,9 +1,20 @@
+using BookStore.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// Connection to database
+builder.Services.AddDbContext<BookStoreDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("BookStoreDbConnection"));
+});
+
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

@@ -2,14 +2,12 @@ namespace BookStore.Models.Entities;
 
 public class Book
 {
-    /*• Définir un modèle Book avec les propriétés suivantes : Id, Title, Author, Category,
-    Price, Description, CoverImage, et ISBN (google :International Standard Book
-            Number). */
-    
-    public int Id { get; }
+    public int Id { get; set; }
     public string Title { get; set; } = string.Empty;
-    public Author Author { get; set; }
-    public Category Category { get; set; }
+    public Author? Author { get; set; } = null;
+    public int AuthorId { get; set; }
+    public Category? Category { get; set; } = null;
+    public int CategoryId { get; set; }
     public double Price { get; set; }
     public string Description { get; set; } = string.Empty;
     public string CoverImage { get; set; } = string.Empty;
