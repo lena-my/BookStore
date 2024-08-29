@@ -25,6 +25,14 @@ public class HomeController : Controller
         // Fetch the list of books from the database
         var books = await _bookRepository.GetBooksAsync();
         
+        // Check if session exists
+        var sessionValue = HttpContext.Session.GetString("MySessionKey");
+        if (sessionValue == null)
+        {
+            // Defines the session variable if it does not exist
+            HttpContext.Session.SetString("MySessionKey", "Session Value");
+        }
+        
         return View(books);
     }
 
