@@ -47,10 +47,15 @@ public class BookRepository : IBookRepository
         return book;
     }
 
-    public async Task<Book> FindBooksByAuthor(Author author)
+    public async Task<List<Book>> FindBooksByAuthor(Author author, string query)
     {
         List<Book> books = new List<Book>();
-        //TODO
+        var filteredBooks = books.AsQueryable();
+        // Filter books based on the query
+        filteredBooks
+            .Where(b => b.Author.Name.Contains(query, StringComparison.OrdinalIgnoreCase))
+            .ToList(); // Convert to List before returning
+
         return null;
     }
 }
