@@ -23,4 +23,5 @@ public class BooksController : Controller
         Book? book = await _bookRepository.GetBookAsync(Id);
         return View(book);
     }
+    
 }

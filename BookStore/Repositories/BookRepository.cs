@@ -46,4 +46,11 @@ public class BookRepository : IBookRepository
         
         return book;
     }
+
+    public async Task<Book> FindBooksByAuthor(Author author)
+    {
+        List<Book> books = new List<Book>();
+        //TODO
+        return null;
+    }
 }

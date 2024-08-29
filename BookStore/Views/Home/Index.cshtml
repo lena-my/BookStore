@@ -6,6 +6,28 @@
 
 <div>
     <h1>Book Store</h1>
+
+    <div class="container mt-4">
+        <form id="searchForm">
+            <div class="row">
+                <div class="col-md-3">
+                    <select class="form-select" name="searchBy" aria-label="Search by">
+                        <option value="" selected>Select search criteria</option>
+                        <option value="title">Title</option>
+                        <option value="author">Author</option>
+                        <option value="category">Category</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="query" placeholder="Enter your search term" />
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-primary w-100" id="searchButton">Search</button>
+                </div>
+            </div>
+        </form>
+        <div id="searchResults" class="mt-4"></div>
+        </div>
     
     <h2>List of books</h2>
     <table class="table table-hover .table-borderless">
@@ -18,12 +40,41 @@
         @foreach (var book in Model)
         {
             
-                <tr>
-                    <td><a asp-action="GetBook" asp-controller="Books" asp-route-Id=@book.Id>@book.Title</a></td>
-                    <td>@book.Author.Name</td>
-                    <td>@book.Price</td>
-                </tr>
+            <tr>
+                <td><a asp-action="GetBook" asp-controller="Books" asp-route-Id=@book.Id>@book.Title</a></td>
+                <td>@book.Author.Name</td>
+                <td>@book.Price</td>
+            </tr>
             
         }
     </table>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('#searchButton').click(function() {
+            // Get form data
+            var formData = $('#searchForm').serialize();
+
+            // Make AJAX request
+            $.ajax({
+                url: '/search',
+                type: 'GET',
+                data: formData,
+                dataType: 'json',
+                success: function(data) {
+                    // Render the results
+                    var resultsHtml = '<table class="table"><thead><tr><th>Title</th><th>Author</th><th>Price</th></tr></thead><tbody>';
+                    $.each(data, function(index, book) {
+                        resultsHtml += '<tr><td>' + book.title + '</td><td>' + book.author + '</td><td>' + book.price + '</td></tr>';
+                    });
+                    resultsHtml += '</tbody></table>';
+                    $('#searchResults').html(resultsHtml);
+                },
+                error: function(xhr, status, error) {
+                    $('#searchResults').html('<p class="text-danger">An error occurred: ' + error + '</p>');
+                }
+            });
+        });
+    });
+</script>

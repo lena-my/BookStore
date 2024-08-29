@@ -72,7 +72,7 @@ public class BookStoreDbContext : DbContext
                 CategoryId = 2, // Science Fiction
                 Price = 19.99,
                 Description = "A dystopian social science fiction novel and cautionary tale.",
-                CoverImage = "https://example.com/covers/1984.jpg",
+                CoverImage = "https://res.cloudinary.com/duvzo2rga/image/upload/c_thumb,w_200,g_face/v1724920059/1984_cjajde.jpg",
                 ISBN = "978-0451524935"
             },
             new Book
@@ -83,7 +83,7 @@ public class BookStoreDbContext : DbContext
                 CategoryId = 1, // Fiction
                 Price = 14.99,
                 Description = "A novel about the serious issues of rape and racial inequality.",
-                CoverImage = "https://example.com/covers/mockingbird.jpg",
+                CoverImage = "https://res.cloudinary.com/duvzo2rga/image/upload/c_thumb,w_200,g_face/v1724918903/to_kill_a_mockingbird_bpukqf.jpg",
                 ISBN = "978-0061120084"
             },
             new Book
@@ -94,7 +94,7 @@ public class BookStoreDbContext : DbContext
                 CategoryId = 3, // Fantasy
                 Price = 24.99,
                 Description = "The first book in the Harry Potter series.",
-                CoverImage = "https://example.com/covers/harrypotter1.jpg",
+                CoverImage = "https://res.cloudinary.com/duvzo2rga/image/upload/c_thumb,w_200,g_face/v1724919817/harryPotterAndTheSorcerStone_crccd4.jpg",
                 ISBN = "978-0590353427"
             },
             new Book
@@ -105,7 +105,7 @@ public class BookStoreDbContext : DbContext
                 CategoryId = 3, // Fantasy
                 Price = 17.99,
                 Description = "A fantasy novel and prelude to The Lord of the Rings.",
-                CoverImage = "https://example.com/covers/hobbit.jpg",
+                CoverImage = "https://res.cloudinary.com/duvzo2rga/image/upload/c_thumb,w_200,g_face/v1724919898/theHobbit_lp2coq.jpg",
                 ISBN = "978-0547928227"
             },
             new Book
@@ -116,7 +116,7 @@ public class BookStoreDbContext : DbContext
                 CategoryId = 4, // Classics
                 Price = 15.99,
                 Description = "A novel about the American dream and the Roaring Twenties.",
-                CoverImage = "https://example.com/covers/gatsby.jpg",
+                CoverImage = "https://res.cloudinary.com/duvzo2rga/image/upload/c_thumb,w_200,g_face/v1724919986/theGreatGastby_wv8ftk.webp",
                 ISBN = "978-0743273565"
             }
         );
