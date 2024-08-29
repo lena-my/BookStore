@@ -5,10 +5,10 @@
 }
 
 <div>
-    <h1>Book Store</h1>
+    <h1 class="text-primary">Book Store</h1>
 
     <div class="container mt-4">
-        <form id="searchForm">
+        <form id="searchForm" method="post">
             <div class="row">
                 <div class="col-md-3">
                     <select class="form-select" name="searchBy" aria-label="Search by">
@@ -19,7 +19,7 @@
                     </select>
                 </div>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" name="query" placeholder="Enter your search term" />
+                    <input type="text" class="form-control" name="query" placeholder="Enter your search term"/>
                 </div>
                 <div class="col-md-3">
                     <button type="button" class="btn btn-primary w-100" id="searchButton">Search</button>
@@ -27,30 +27,35 @@
             </div>
         </form>
         <div id="searchResults" class="mt-4"></div>
-        </div>
+    </div>
     
-    <h2>List of books</h2>
-    <table class="table table-hover .table-borderless">
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Price</th>
-        </tr>
-
-        @foreach (var book in Model)
-        {
-            
-            <tr>
-                <td><a asp-action="GetBook" asp-controller="Books" asp-route-Id=@book.Id>@book.Title</a></td>
-                <td>@book.Author.Name</td>
-                <td>@book.Price</td>
-            </tr>
-            
-        }
-    </table>
+    <h2 class="text-center">List of books</h2>
+    <div class="container mt-4">
+        <div class="row">
+            @foreach (var book in Model)
+            {
+            <div class="col-md-4">
+                <div class="card mb-4 text-center p-3">
+                    <a asp-action="GetBook" asp-controller="Books" asp-route-Id="@book.Id">
+                    <img src="@book.CoverImage" class="card-img-top" alt="Cover of @book.Title" style="height: 200px; object-fit: contain;">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            @book.Title
+                        </h5>
+                        <p class="card-text">@book.Author.Name</p>
+                        <p class="card-text"><strong>@book.Price.ToString("C")</strong></p>
+                    </div>
+                    </a>
+                </div>
+                
+            </div>
+            }
+        </div>
+    </div>
 </div>
 
-<script>
+@section Scripts {
+    <script>
     $(document).ready(function() {
         $('#searchButton').click(function() {
             // Get form data
@@ -64,17 +69,21 @@
                 dataType: 'json',
                 success: function(data) {
                     // Render the results
-                    var resultsHtml = '<table class="table"><thead><tr><th>Title</th><th>Author</th><th>Price</th></tr></thead><tbody>';
-                    $.each(data, function(index, book) {
-                        resultsHtml += '<tr><td>' + book.title + '</td><td>' + book.author + '</td><td>' + book.price + '</td></tr>';
-                    });
+                    var resultsHtml = '<table class="table"><thead><tr><th>Title</th><th>Author</th><th>Price</th></tr></thead><tbody>';                    $.each(data, function(index, book) {
+                        var link = '/Books/GetBook/' + book.id; // Route is /Books/GetBook/{id}
+                        resultsHtml += '<tr>';
+                        resultsHtml += '<td><a href="' + link + '">' + book.title + '</a></td>';
+                        resultsHtml += '<td>' + book.author + '</td>';
+                        resultsHtml += '<td>' + book.price + '</td>';
+                        resultsHtml += '</tr>';                    });
                     resultsHtml += '</tbody></table>';
                     $('#searchResults').html(resultsHtml);
                 },
                 error: function(xhr, status, error) {
-                    $('#searchResults').html('<p class="text-danger">An error occurred: ' + error + '</p>');
+                    $('#searchResults').html('<p class="text-danger">Select a criteria</p>');
                 }
             });
         });
     });
-</script>
+    </script>
+}

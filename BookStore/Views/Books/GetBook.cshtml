@@ -13,6 +13,11 @@
                 <td>@Model.Title</td>
 
             </tr>
+            <tr>
+                <th>Title</th>
+                <td>@Model.Title</td>
+
+            </tr>
             <tbody class="table-group-divider">
             <tr>
                 <th>ISBN</th>
@@ -36,7 +41,7 @@
             </tr>
             <tr>
                 <th>Price</th>
-                <td>@Model.Price</td>
+                <td>@Model.Price.ToString("C")</td>
             </tr>
         </table>
     </di>

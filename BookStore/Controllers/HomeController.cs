@@ -43,7 +43,7 @@ public class HomeController : Controller
         // Apply filters based on the search criteria
         var filteredBooks = books.AsQueryable(); // Convert List<Book> to IQueryable<Book>
 
-        switch (searchBy)
+        switch (searchBy.ToLower())
         {
             case "title":
                 filteredBooks = filteredBooks.Where(b => b.Title.Contains(query, StringComparison.OrdinalIgnoreCase));
@@ -62,18 +62,16 @@ public class HomeController : Controller
         var result = filteredBooks
             .Select(b => new 
             {
+                Id = b.Id,
                 Title = b.Title,
                 Author = b.Author.Name,
-                Price = b.Price
+                Price = b.Price.ToString("C")
             })
             .ToList(); // No need for ToListAsync here since books is already in memory
 
         // Return the results as JSON
         return Json(result);
     }
-
-
-
     
     public IActionResult Privacy()
     {
